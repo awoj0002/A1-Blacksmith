@@ -40,24 +40,22 @@ function updateForge() {
     forgeValue.classList.remove('too-cold', 'ready-to-forge', 'roaring-fire')
     console.log(heat)
 
-    if (heatValue < 30) {
+    if (heat < 30) {
         forgeValue.classList.add('too-cold')
-        forgeImage.setAttribute('src', 'images/forge-cold.svg')
+        forgeImage.setAttribute('src', 'assets/forge-cold.svg')
         forgeImage.setAttribute('alt', 'A stone forge with dark coals and no flames')
-        messageElement.textContent = "Too cold"
-    } else if (heatValue < 70) {
+        statusElement.textContent = "Too cold"
+    } else if (heat < 70) {
         forgeValue.classList.add('ready-to-forge')
-        forgeImage.setAttribute('src', 'images/forge-ready.svg')
+        forgeImage.setAttribute('src', 'assets/forge-ready.svg')
         forgeImage.setAttribute('alt', 'A stone forge with a small orange fire')
-        messageElement.textContent = "Ready to forge"
+        statusElement.textContent = "Ready to forge"
     } else {
         forgeValue.classList.add('roaring-fire')
-        forgeImage.setAttribute('src', 'images/forge-roaring.svg')
+        forgeImage.setAttribute('src', 'assets/forge-roaring.svg')
         forgeImage.setAttribute('alt', 'A stone forge with tall bright flames and sparks')
-        messageElement.textContent = "Roaring fire"
+        statusElement.textContent = "Roaring fire"
     }
-
-
 }
  
 
@@ -66,14 +64,32 @@ function updateForge() {
 function resetForge() {
     heat = 20
     swordsMade = 0
-    messageElement.textContent = "Too Cold"
     updateForge()
 } 
 
 
 // 6. Write heatForge(amount). Add heat, cap it, and update the page.
+function heatForge(amount) {
+    heat += amount
+    if (heat > 100) {
+        heat = 100
+    } else if (heat < 0) {
+        heat = 0
+    } 
+    updateForge()
+}
 
 // 7. Write makeSword(). Handle both success and insufficient heat.
+function makeSword() {
+    if (heat >= 30) {
+        swordsMade++
+        heat -= 30
+        messageElement.textContent = "Sword forged!"
+        updateForge()
+    } else {
+        messageElement.textContent = "Not enough heat to forge a sword."
+    }
+}
 
 // 8. Call resetForge() once to start the game.
 
