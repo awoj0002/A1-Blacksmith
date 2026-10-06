@@ -2,6 +2,11 @@
 console.log(document.title)
 // PLAN: Write a short pseudocode plan for making a sword here.
 
+//when user clicks on heat forge, increase the heat by 10 and cap at 100
+//when user makes a sword, check if heat is at least 30
+//use 30 heat and increase the swords by 1
+//update the forge status and image based on the heat value
+//reset the forge to 20 heat and 0 swords made when reset function is called
 
 // 1. Select the forge, heat, sword count, status, image, and message elements.
 //    Find their IDs in index.html.
